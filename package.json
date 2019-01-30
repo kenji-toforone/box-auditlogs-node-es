@@ -1,0 +1,11 @@
+{
+    "name": "boxaudit",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "aws-sdk": "^2.395.0",
+        "box-node-sdk": "^1.6.0",
+        "dotenv": "^6.2.0",
+        "elasticsearch": "^15.3.1"
+    }
+}
