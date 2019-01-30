@@ -6,7 +6,7 @@ const BoxSDK = require('box-node-sdk');
 
 // AWS Setting
 aws.config.region = process.env.AWS_REGION;
-if (process.env.LOCAL) {
+if (process.env.LOCAL) { // This part is unnecessary when not using profile
     var credentials = new aws.SharedIniFileCredentials({profile: process.env.LOCAL_PROFILE});
     aws.config.credentials = credentials;
 }
@@ -54,7 +54,6 @@ async function main() {
         console.error(err);
         box_params.created_after = process.env.BOX_START_DATE;
     }
-    console.log(box_params);
 
     // Call BoxApi
     client.events.get(box_params, function(err, stream) {
@@ -63,8 +62,6 @@ async function main() {
         }
     }).then(event => {
         var next_position = event.next_stream_position;
-        // console.log(next_position);
-        // console.log(event.chunk_size);
         // Send to Elasticsearch
         if (event.chunk_size != 0){
             sendToES(event.entries);
@@ -101,7 +98,6 @@ function sendToES(records){
         searchRecords.push(header);
         searchRecords.push(record);
     };
-    console.log(searchRecords);
     ES_CLIENT.bulk({
         "body": searchRecords
     }, function(err, resp){
