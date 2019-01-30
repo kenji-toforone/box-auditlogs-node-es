@@ -1,21 +1,14 @@
 var event = {
-    "Records": [
-        {
-            "awsRegion": "ap-northeast-1",
-            "sequenceNumber": "196800000000000000000374",
-            "partitionKey": "khohohoihoihohoihoihohohohohoh",
-            "eventSource": "aws:s3",
-            "s3":{
-                "bucket":{
-                    "name":"chicken-bucket",
-                    "arn":"bucket-ARN"
-                },
-                "object":{
-                    "key":"tekito.jpg"
-                }
-            }
-        }
-    ]
+    version: '0',
+    id: 'XXXXXXXX-XXXXX-XXXX-XXXXX-XXXXXXXX',
+    'detail-type': 'Scheduled Event',
+    source: 'aws.events',
+    account: 'XXXXXXXXXX',
+    time: '2019-01-30T06:27:04Z',
+    region: 'ap-northeast-1',
+    resources:
+        [ 'arn:aws:events:ap-northeast-1:XXXXXXXXXX:rule/box-auditlog-exec' ],
+    detail: {}
 };
 
 var context = {
